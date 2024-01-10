@@ -8,6 +8,10 @@ confinement: strict
 base: core22
 icon: snap/gui/icon.svg
 
+architectures:
+  - build-on: [amd64]
+  - build-on: [arm64]
+
 parts:
 
   desktop-qt5:
