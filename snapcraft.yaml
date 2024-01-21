@@ -46,7 +46,6 @@ parts:
     stage-packages:
       - ffmpeg
       - libmpv1
-      - binutils
       - python3
       - python3-requests
       - python3-chardet
