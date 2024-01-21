@@ -58,6 +58,7 @@ parts:
     override-build: |
       craftctl default
       sed -i "s/ctypes.util.find_library('mpv')/'libmpv.so.1'/g" $SNAPCRAFT_PART_INSTALL/usr/lib/yuki-iptv/thirdparty/mpv.py      
+      sed -i "s|'lib'|'$SNAPCRAFT_ARCH_TRIPLET'|g" $SNAPCRAFT_PART_INSTALL/usr/lib/python3/dist-packages/wand/api.py
     after: [desktop-qt5]
 
 apps:
@@ -68,6 +69,7 @@ apps:
       PATH: $SNAP/usr/bin:$SNAP/bin:$PATH
       PYTHONPATH: $SNAP/usr/lib/python3/dist-packages
       LD_LIBRARY_PATH: $SNAP/usr/lib/:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/blas:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/lapack
+      MAGICK_HOME: $SNAP/usr/lib
       # Fallback to XWayland if running in a Wayland session.
       DISABLE_WAYLAND: 1
       # Use GTK3 cursor theme, icon theme and open/save file dialogs.
