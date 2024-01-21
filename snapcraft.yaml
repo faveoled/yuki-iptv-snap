@@ -56,6 +56,9 @@ parts:
       - python3-gi
       - python3-unidecode
       - python3-pydbus
+    override-build: |
+      craftctl default
+      sed -i "s/ctypes.util.find_library('mpv')/'libmpv.so.1'/g" $SNAPCRAFT_PART_INSTALL/usr/lib/yuki-iptv/thirdparty/mpv.py      
     after: [desktop-qt5]
 
 apps:
