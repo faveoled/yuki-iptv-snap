@@ -102,3 +102,5 @@ plugs:
     interface: content
     target: $SNAP/data-dir/sounds
     default-provider: gtk-common-themes
+  shared-memory:
+    private: true
