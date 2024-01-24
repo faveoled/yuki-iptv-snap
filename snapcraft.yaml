@@ -2,7 +2,7 @@ name: yuki-iptv-unofficial
 summary: S
 description: |
   D
-version: '0.0.8'
+version: '0.0.9'
 grade: stable
 confinement: strict
 base: core22
@@ -22,6 +22,7 @@ parts:
     build-packages:
       - qtbase5-dev
       - dpkg-dev
+      - libgtk-3-dev
     stage-packages:
       - libxkbcommon0
       - fonts-ubuntu
@@ -34,6 +35,10 @@ parts:
       - libqt5svg5 # for loading icon themes which are svg
       - libgdk-pixbuf2.0-0
       - locales-all
+      - libgtk-3-bin
+    override-prime: |
+      craftctl default
+      glib-compile-schemas ${CRAFT_PRIME}/usr/share/glib-2.0/schemas/
 
   qt5-gtk-platform:
     plugin: nil
@@ -42,7 +47,7 @@ parts:
 
   yuki:
     plugin: dump
-    source: https://github.com/yuki-iptv/yuki-iptv/releases/download/0.0.8/yuki-iptv_0.0.8_all.deb
+    source: https://github.com/yuki-iptv/yuki-iptv/releases/download/0.0.9/yuki-iptv_0.0.9_all.deb
     stage-packages:
       - ffmpeg
       - libmpv1
@@ -84,6 +89,8 @@ apps:
       - opengl
       - audio-playback
       - removable-media
+    slots:
+      - mpris-player
 
 plugs:
   gtk-2-engines:
@@ -104,3 +111,8 @@ plugs:
     default-provider: gtk-common-themes
   shared-memory:
     private: true
+
+slots:
+  mpris-player:
+    interface: mpris
+    name: yuki_iptv
