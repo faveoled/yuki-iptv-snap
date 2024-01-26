@@ -60,13 +60,18 @@ parts:
       - python3-gi
       - python3-unidecode
       - python3-pydbus
-      - yt-dlp
     override-build: |
       craftctl default
       sed -i "s/ctypes.util.find_library('mpv')/'libmpv.so.1'/g" $SNAPCRAFT_PART_INSTALL/usr/lib/yuki-iptv/thirdparty/mpv.py      
       sed -i "s|'lib'|'$SNAPCRAFT_ARCH_TRIPLET'|g" $SNAPCRAFT_PART_INSTALL/usr/lib/python3/dist-packages/wand/api.py
     after: [desktop-qt5]
 
+
+  yt-dlp:
+    plugin: python
+    python-packages:
+      - yt-dlp == 2023.12.30
+  
 apps:
   yuki-iptv-unofficial:
     command: bin/desktop-launch $SNAP/usr/bin/yuki-iptv
