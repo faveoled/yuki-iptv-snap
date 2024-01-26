@@ -69,6 +69,7 @@ parts:
 
   yt-dlp:
     plugin: python
+    source: .
     python-packages:
       - yt-dlp == 2023.12.30
   
