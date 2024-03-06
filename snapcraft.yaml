@@ -47,7 +47,7 @@ parts:
 
   yuki:
     plugin: dump
-    source: https://github.com/yuki-iptv/yuki-iptv/releases/download/0.0.9/yuki-iptv_0.0.9_all.deb
+    source: https://codeberg.org/Ame-chan-angel/yuki-iptv/releases/download/0.0.9/yuki-iptv_0.0.9_all.deb
     stage-packages:
       - ffmpeg
       - libmpv1
