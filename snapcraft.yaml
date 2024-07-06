@@ -56,13 +56,12 @@ parts:
       - python3-chardet
       - python3-setproctitle
       - python3-pyqt5
-      - python3-wand
+      - python3-pil
       - python3-gi
       - python3-unidecode
     override-build: |
       craftctl default
       sed -i "s/ctypes.util.find_library('mpv')/'libmpv.so.1'/g" $SNAPCRAFT_PART_INSTALL/usr/lib/yuki-iptv/thirdparty/mpv.py      
-      sed -i "s|'lib'|'$SNAPCRAFT_ARCH_TRIPLET'|g" $SNAPCRAFT_PART_INSTALL/usr/lib/python3/dist-packages/wand/api.py
     after: [desktop-qt5]
 
 
