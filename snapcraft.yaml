@@ -39,6 +39,9 @@ parts:
     stage-packages:
       - ffmpeg
       - libmpv1
+      - curl
+      - imagemagick-6.q16
+      - libmagickcore-6.q16-6-extra
     override-build: |
       craftctl default
       sed -i "s/ctypes.util.find_library('mpv')/'libmpv.so.1'/g" $SNAPCRAFT_PART_INSTALL/usr/lib/yuki-iptv/thirdparty/mpv.py
@@ -58,6 +61,10 @@ apps:
       LD_LIBRARY_PATH: $SNAP/usr/lib/:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/blas:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/lapack
       # Fallback to XWayland if running in a Wayland session.
       DISABLE_WAYLAND: 1
+      # See https://packages.ubuntu.com/jammy/imagemagick-6.q16 for actual version
+      MAGICK_CODER_FILTER_PATH: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/ImageMagick-6.9.11/modules-Q16/filters
+      MAGICK_CODER_MODULE_PATH: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/ImageMagick-6.9.11/modules-Q16/coders
+      MAGICK_CONFIGURE_PATH: $SNAP/etc/ImageMagick-6
     plugs:
       - home
       - removable-media
