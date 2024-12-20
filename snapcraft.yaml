@@ -2,7 +2,7 @@ name: yuki-iptv-unofficial
 summary: S
 description: |
   D
-version: '0.0.16'
+version: '0.0.17'
 grade: stable
 confinement: strict
 base: core22
@@ -19,29 +19,23 @@ parts:
     source: .
     stage-packages:
       - python3
-      - python3-requests
-      - python3-chardet
-      - python3-pil
       - python3-gi
-      - python3-wand
+      - python3-chardet
+      - python3-requests
     python-packages:
       - PyQt6 == 6.7.1
       - yt-dlp == 2024.12.6
     override-build: |
       craftctl default
-      patch $SNAPCRAFT_PART_INSTALL/usr/lib/python3/dist-packages/wand/api.py wand-api.patch
       # removing qt libs and using the runtime ones instead
       rm -rf $SNAPCRAFT_PART_INSTALL/lib/python3.10/site-packages/PyQt6/Qt6
 
   yuki:
     plugin: dump
-    source: https://codeberg.org/liya/yuki-iptv/releases/download/0.0.16/yuki-iptv_0.0.16_all.deb
+    source: https://codeberg.org/liya/yuki-iptv/releases/download/0.0.17/yuki-iptv_0.0.17_all.deb
     stage-packages:
       - ffmpeg
       - libmpv1
-      - curl
-      - imagemagick-6.q16
-      - libmagickcore-6.q16-6-extra
     override-build: |
       craftctl default
       sed -i "s/ctypes.util.find_library('mpv')/'libmpv.so.1'/g" $SNAPCRAFT_PART_INSTALL/usr/lib/yuki-iptv/thirdparty/mpv.py
@@ -61,10 +55,6 @@ apps:
       LD_LIBRARY_PATH: $SNAP/usr/lib/:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/blas:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/lapack
       # Fallback to XWayland if running in a Wayland session.
       DISABLE_WAYLAND: 1
-      # See https://packages.ubuntu.com/jammy/imagemagick-6.q16 for actual version
-      MAGICK_CODER_FILTER_PATH: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/ImageMagick-6.9.11/modules-Q16/filters
-      MAGICK_CODER_MODULE_PATH: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/ImageMagick-6.9.11/modules-Q16/coders
-      MAGICK_CONFIGURE_PATH: $SNAP/etc/ImageMagick-6
     plugs:
       - home
       - removable-media
