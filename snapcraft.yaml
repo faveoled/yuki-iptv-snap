@@ -39,6 +39,7 @@ parts:
     override-build: |
       craftctl default
       sed -i "s/ctypes.util.find_library('mpv')/'libmpv.so.1'/g" $SNAPCRAFT_PART_INSTALL/usr/lib/yuki-iptv/thirdparty/mpv.py
+      sed -i 's/"vo": "gpu-next,gpu,x11",/"vo": "x11",/' $SNAPCRAFT_PART_INSTALL/usr/lib/yuki-iptv/yuki-iptv.py
     after:
       - python-deps
 
