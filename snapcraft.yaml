@@ -2,7 +2,7 @@ name: yuki-iptv-unofficial
 summary: S
 description: |
   D
-version: '0.0.17'
+version: '0.0.18'
 grade: stable
 confinement: strict
 base: core22
