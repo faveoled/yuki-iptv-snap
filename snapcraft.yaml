@@ -32,7 +32,7 @@ parts:
 
   yuki:
     plugin: dump
-    source: https://codeberg.org/liya/yuki-iptv/releases/download/0.0.17/yuki-iptv_0.0.17_all.deb
+    source: https://codeberg.org/liya/yuki-iptv/releases/download/0.0.18/yuki-iptv_0.0.18_all.deb
     stage-packages:
       - ffmpeg
       - libmpv1
