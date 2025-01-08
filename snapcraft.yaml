@@ -24,7 +24,7 @@ parts:
       - python3-requests
     python-packages:
       - PyQt6 == 6.7.1
-      - yt-dlp == 2024.12.6
+      - yt-dlp == 2024.12.23
     override-build: |
       craftctl default
       # removing qt libs and using the runtime ones instead
